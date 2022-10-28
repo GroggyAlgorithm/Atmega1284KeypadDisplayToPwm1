@@ -1415,19 +1415,11 @@ void LcdDisplayByteHex(uint8_t byteValue)
 */
 void LcdDisplayByteBinary(uint8_t byteValue)
 {
-	for(uint8_t i = 0, j = 0; i < 9; i++)
-	{
-		if(i == 4)
-		{
-			LcdPrintChar(' ');
-		}
-		else
-		{
-			LcdPrintChar(readBit(byteValue,j)+0x30);
-			j++;
-		}
-	}
-	
+    for(int8_t i = 7; i >= 0; i--)
+    {
+	LcdPrintChar( (readBit(byteValue,(i)) + 0x30) );
+	if(i == 4) LcdPrintChar(' ');
+    }
 }
 
 
